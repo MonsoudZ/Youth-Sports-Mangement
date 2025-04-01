@@ -1,0 +1,71 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="py-6">
+    <div class="flex justify-between items-center">
+      <h1 class="text-3xl font-bold text-gray-900">User Management</h1>
+      <%= link_to "Back to Dashboard", dashboard_path, class: "text-indigo-600 hover:text-indigo-900" %>
+    </div>
+  </div>
+
+  <div class="mt-8">
+    <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+      <div class="px-4 py-5 sm:px-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">All Users</h3>
+        <p class="mt-1 max-w-2xl text-sm text-gray-500">Manage user accounts and roles</p>
+      </div>
+      <div class="border-t border-gray-200">
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <% @users.each do |user| %>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm font-medium text-gray-900"><%= user.full_name %></div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900"><%= user.email %></div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <% user.roles.each do |role| %>
+                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full mr-2
+                        <%= case role
+                            when 'admin'
+                              'bg-red-100 text-red-800'
+                            when 'director'
+                              'bg-purple-100 text-purple-800'
+                            when 'facility_admin'
+                              'bg-blue-100 text-blue-800'
+                            when 'coach'
+                              'bg-green-100 text-green-800'
+                            when 'parent'
+                              'bg-yellow-100 text-yellow-800'
+                            else
+                              'bg-gray-100 text-gray-800'
+                            end %>">
+                        <%= role.titleize %>
+                      </span>
+                    <% end %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <%= link_to "Edit", edit_user_path(user), class: "text-indigo-600 hover:text-indigo-900 mr-4" %>
+                    <%= button_to "Delete", user_path(user), 
+                        method: :delete, 
+                        class: "text-red-600 hover:text-red-900",
+                        data: { confirm: "Are you sure you want to delete this user?" } %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

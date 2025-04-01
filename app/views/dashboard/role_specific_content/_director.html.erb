@@ -1,0 +1,17 @@
+<div class="bg-white rounded-lg shadow p-6">
+  <h2 class="text-xl font-semibold text-gray-900 mb-4">Director Overview</h2>
+  <div class="space-y-4">
+    <div class="flex items-center justify-between">
+      <span class="text-gray-600">Total Users</span>
+      <span class="font-semibold"><%= @dashboard_data[:stats][:total_users] %></span>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="text-gray-600">Total Teams</span>
+      <span class="font-semibold"><%= @dashboard_data[:stats][:total_teams] %></span>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="text-gray-600">Total Facilities</span>
+      <span class="font-semibold"><%= @dashboard_data[:stats][:total_facilities] %></span>
+    </div>
+  </div>
+</div> 

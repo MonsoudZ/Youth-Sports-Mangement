@@ -1,0 +1,26 @@
+<nav class="bg-white shadow-lg">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex justify-between h-16">
+      <div class="flex">
+        <div class="flex-shrink-0 flex items-center">
+          <%= link_to "Youth Sports", root_path, class: "text-xl font-bold text-indigo-600" %>
+        </div>
+        <% if user_signed_in? %>
+          <div class="ml-6 flex items-center">
+            <%= link_to "Dashboard", dashboard_path, class: "text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium" %>
+          </div>
+        <% end %>
+      </div>
+      
+      <div class="flex items-center">
+        <% if user_signed_in? %>
+          <span class="text-gray-700 mr-4">Welcome, <%= current_user.full_name %></span>
+          <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium" %>
+        <% else %>
+          <%= link_to "Sign in", new_user_session_path, class: "text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium" %>
+          <%= link_to "Sign up", new_user_registration_path, class: "bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav> 
